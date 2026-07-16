@@ -9,6 +9,7 @@ import rshinna.orcacast.domain.Category;
 import rshinna.orcacast.domain.Transaction;
 import rshinna.orcacast.domain.TransactionId;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -20,6 +21,7 @@ import java.util.UUID;
 public class TransactionEntity {
 
     @Id
+    @EqualsAndHashCode.Include
     private UUID id;
 
     private String description;
@@ -28,12 +30,15 @@ public class TransactionEntity {
     @Enumerated(EnumType.STRING)
     private Category category;
 
+    private Instant createdAt;
+
     public static TransactionEntity from(Transaction transaction) {
         return new TransactionEntity(
                 transaction.getId().uuid(),
                 transaction.getDescription(),
                 transaction.getAmount(),
-                transaction.getCategory()
+                transaction.getCategory(),
+                transaction.getCreatedAt()
         );
     }
 
@@ -42,7 +47,8 @@ public class TransactionEntity {
                 new TransactionId(this.id),
                 this.description,
                 this.amount,
-                this.category
+                this.category,
+                this.createdAt
         );
     }
 }
