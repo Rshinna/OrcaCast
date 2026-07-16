@@ -15,8 +15,8 @@ public class VoiceController {
         this.voiceCommandService = voiceCommandService;
     }
 
-    @PostMapping("/voice-commands")
-    public String handle(@RequestParam("file") MultipartFile audio) {
+    @PostMapping(value = "/voice-commands", produces = "audio/mpeg")
+    public byte[] handle(@RequestParam("file") MultipartFile audio) {
         return voiceCommandService.process(audio);
     }
 }
