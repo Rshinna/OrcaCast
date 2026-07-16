@@ -54,7 +54,7 @@ Os casos de uso não recebem nem devolvem a entidade de domínio diretamente —
 
 - Registrar uma transação financeira (categoria, descrição, valor)
 - Listar transações filtradas por categoria
-- Processar comandos de voz: recebe um áudio, transcreve, interpreta a intenção via IA (tool-calling) e executa a ação correspondente automaticamente (criar ou consultar transações)
+- Processar comandos de voz de ponta a ponta: recebe um áudio, transcreve (Groq/Whisper), interpreta a intenção via IA com tool-calling (Groq/Llama), executa a ação correspondente automaticamente (criar ou consultar transações), e devolve a resposta também em áudio (ElevenLabs)
 
 ## Endpoints
 
@@ -62,7 +62,7 @@ Os casos de uso não recebem nem devolvem a entidade de domínio diretamente —
 |---|---|---|
 | `POST` | `/transactions` | Cria uma transação a partir de um corpo JSON |
 | `GET` | `/transactions?category=` | Lista transações de uma categoria |
-| `POST` | `/voice-commands` | Recebe um arquivo de áudio (`multipart/form-data`, campo `file`) com um comando em linguagem natural |
+| `POST` | `/voice-commands` | Recebe um arquivo de áudio (`multipart/form-data`, campo `file`) com um comando em linguagem natural e devolve a resposta também em áudio (`audio/mpeg`) |
 
 Categorias válidas: `GROCERIES`, `PHARMA`, `AUTO`.
 
@@ -110,8 +110,8 @@ Chaves gratuitas podem ser obtidas em [console.groq.com](https://console.groq.co
 - [x] Integração com Groq para chat / tool calling
 - [x] Integração com Groq (Whisper) para transcrição de voz
 - [x] Integração com ElevenLabs para texto-para-voz
-- [ ] Integrar o TTS ao fluxo de comando de voz (resposta em áudio, não só em texto)
-- [ ] Testes automatizados
+- [x] Integrar o TTS ao fluxo de comando de voz (ciclo completo: áudio → transcrição → IA → ação → resposta em áudio)
+- [ ] Testes automatizadoss
 - [ ] Migrações versionadas (Flyway)
 
 ## Créditos
