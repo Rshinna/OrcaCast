@@ -111,7 +111,7 @@ Chaves gratuitas podem ser obtidas em [console.groq.com](https://console.groq.co
 - [x] Integração com Groq (Whisper) para transcrição de voz
 - [x] Integração com ElevenLabs para texto-para-voz
 - [x] Integrar o TTS ao fluxo de comando de voz (ciclo completo: áudio → transcrição → IA → ação → resposta em áudio)
-- [ ] Testes automatizadoss
+- [x] Testes automatizados (use cases, persistência com H2, e camada web com `@WebMvcTest`)
 - [ ] Migrações versionadas (Flyway)
 
 ## Créditos
